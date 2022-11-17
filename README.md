@@ -2,9 +2,38 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
 
-## Development server
+# Installation pre-requisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+We recommend installing Node v16.14.0
+
+# Installing the Angular CLI
+
+With the following command the angular-cli will be installed globally in your machine:
+
+    npm install -g @angular/cli
+
+# How To install this project
+This repository is made of several separate npm modules, that are installable separately.
+
+    cd exercise
+    npm install
+This should take a couple of minutes.
+
+## To Run the Development Backend Server
+
+We can start the sample application backend with the following command:
+
+    npm run server
+
+This is a small Node REST API server.
+
+# To run the Development UI Server
+
+To run the frontend part of our code, we will use the Angular CLI:
+
+    ng serve 
+
+The application is visible at port 4200: [http://localhost:4200](http://localhost:4200)
 
 ## Code scaffolding
 

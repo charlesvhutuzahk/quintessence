@@ -1,0 +1,94 @@
+<section class="content-header">
+    <h1>
+        Stocks
+    </h1>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" 
+                [(ngModel)]="stockFilter.stock" placeholder="Search By Stock">
+              </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control"
+                [(ngModel)]="stockFilter.industry" placeholder="Search By Industry">
+              </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control"
+                [(ngModel)]="stockFilter.sector" placeholder="Search By Sector">
+              </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control"
+                [(ngModel)]="stockFilter.currency_code" placeholder="Search By Currency Code">
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive fixed-header">
+                <table class="table table-hover" id="">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Industry</th>
+                            <th>Sector</th>
+                            <th>Currency Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let stock of stockList | filterBy: stockFilter;" 
+                        (click)="loadStockValues(stock.id); selectRow(stock.stock)"
+                        [ngClass]="stock.stock === activeRow ? active : notActive"
+                        >
+                            <td>{{stock?.stock}}</td>
+                            <td>{{stock?.industry}}</td>
+                            <td>{{stock?.sector}}</td>
+                            <td>{{stock?.currency_code}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content" *ngIf="stockValuesList.length > 0 && stockSelected">
+    <h5>Stock Values</h5>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive fixed-header">
+                <table class="table table-hover" id="stock-values">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Date</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let value of stockValuesList">
+                            <td>{{value?.stock}}</td>
+                            <td>{{value?.date | date:'dd/MM/yyyy'}}</td>
+                            <td style="text-align: right">{{value?.value | number:'1.2-2'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="float-end">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" (click)="exportStockValues()">Export As JSON</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+.fixed-header {
+    max-width: 100%;
+    max-height: 15em;
+    overflow: auto;
+    position: relative;
+  }
+  
+  table {
+    position: relative;
+    border-collapse: collapse;
+  }
+  
+  td,
+  th {
+    padding: 0.25em;
+  }
+  
+  thead th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    top: 0;
+    background: #000;
+    color: white;
+  }
+  
+  thead th:first-child {
+    left: 0;
+    z-index: 1;
+  }
+  
+  tbody th {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    left: 0;
+    background: #000;
+    border-right: 1px solid #CCC;
+  }
+  .pointer { cursor: pointer;}
+  .active {background-color: rgba(72, 70, 65, 0.79)}
+  
