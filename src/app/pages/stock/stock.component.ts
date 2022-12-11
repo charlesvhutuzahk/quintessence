@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 import { StockValuesService } from 'src/app/services/stock-values.service';
 import { StockService } from 'src/app/services/stock.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-stock',
@@ -21,6 +22,7 @@ export class StockComponent implements OnInit {
   active: string = "pointer active";
   notActive: string = "pointer";
   stockSelected: boolean = false;
+  ascending: boolean = false;
   constructor(
     private stockService: StockService,
     private stockValueService: StockValuesService,
@@ -66,5 +68,52 @@ export class StockComponent implements OnInit {
   deSelectRow() {
     this.activeRow = "";
     this.stockSelected = false;
+  }
+  sortStockValues(column: string) {
+    if(column === 'stock') {
+      this.stockValuesList = this.sortByString(this.stockValuesList, column);
+    } else if(column === 'date') {
+      this.stockValuesList = this.sortByDate(this.stockValuesList, column); 
+    } else {
+      this.stockValuesList = this.sortByNumber(this.stockValuesList, column);
+    }
+  }
+  sortByDate(value: any[], column: string) {   
+    if(this.ascending === true) {     
+      value.sort((a, b) => moment(a[column]).unix() - moment(b[column]).unix());
+      this.ascending = false;
+    } else {
+      value.sort((a, b) => moment(b[column]).unix() - moment(a[column]).unix());
+      this.ascending = true;
+    } 
+    return value; 
+  }
+  sortByNumber(value: any[], column: string) {
+    if(this.ascending === true) {     
+      value.sort((a, b) => {
+        return a[column] - b[column];
+    });
+      this.ascending = false;
+    } else {
+      value.sort((a, b) => {
+        return b[column] - a[column];
+    });
+      this.ascending = true;
+    } 
+    return value; 
+  }
+  sortByString(value: any[], column: string) {
+    if(this.ascending === true) { 
+      value.sort((a, b) => a[column].localeCompare(b[column]));
+      this.ascending = false;
+    }
+    else {
+      value.sort((a, b) => b[column].localeCompare(a[column]));
+      this.ascending = true;
+    }
+    return value;
+  }
+  sortStock(column: string) {
+    this.stockList = this.sortByString(this.stockList, column);
   }
 }

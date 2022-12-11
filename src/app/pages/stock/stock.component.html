@@ -35,11 +35,11 @@
             <div class="table-responsive fixed-header">
                 <table class="table table-hover" id="">
                     <thead>
-                        <tr>
-                            <th>Stock</th>
-                            <th>Industry</th>
-                            <th>Sector</th>
-                            <th>Currency Code</th>
+                        <tr class="pointer">
+                            <th (click)="sortStock('stock')">Stock</th>
+                            <th (click)="sortStock('industry')">Industry</th>
+                            <th (click)="sortStock('sector')">Sector</th>
+                            <th (click)="sortStock('currency_code')">Currency Code</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,10 +65,10 @@
             <div class="table-responsive fixed-header">
                 <table class="table table-hover" id="stock-values">
                     <thead>
-                        <tr>
-                            <th>Stock</th>
-                            <th>Date</th>
-                            <th>Value</th>
+                        <tr class="pointer">
+                            <th (click)="sortStockValues('stock')">Stock</th>
+                            <th (click)="sortStockValues('date')">Date</th>
+                            <th (click)="sortStockValues('value')">Value</th>
                         </tr>
                     </thead>
                     <tbody>

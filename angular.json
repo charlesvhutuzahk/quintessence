@@ -21,6 +21,7 @@
                  "raf",
                  "canvg",
                  "ngx-export-as",
+                 "moment",
                  "core-js"
               ],
             "outputPath": "dist/exercise",
